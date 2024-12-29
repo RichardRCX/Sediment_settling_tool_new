@@ -117,6 +117,7 @@ def index():
             # Assuming rf_predictions[:, 0] = median, rf_predictions[:, 1] = variance
             median_rf = rf_predictions[:, 0]
             variance_rf = rf_predictions[:, 1]
+            miu=np.log(median_rf)
 
             # Calculate scale and shape for lognormal distribution
             scale_rf = median_rf  # Since median = exp(mean_log)
@@ -136,7 +137,7 @@ def index():
             plt.plot(x, pdf, 'g--', lw=2, label='lognorm_RF')
             plt.text(
                 0.9, 0.75,
-                f'$\mu$ (RF): {scale_rf[0]:.3f}\n$\sigma$ (RF): {shape_rf[0]:.3f}\n'
+                f'$\mu$ (RF): {miu[0]:.3f}\n$\sigma$ (RF): {shape_rf[0]:.3f}\n'
                 f'Median (RF): {rf_predictions[0, 0]:.3f} m\nVariance (RF): {rf_predictions[0, 1]:.3f} m²',
                 transform=plt.gca().transAxes,
                 fontsize=FS,
@@ -160,7 +161,7 @@ def index():
             # Assuming rf_predictions[:, 0] = median, rf_predictions[:, 1] = variance
             median_rf = rf_predictions[:, 0]
             variance_rf = rf_predictions[:, 1]
-
+            miu = np.log(median_rf)
             # Calculate scale and shape for lognormal distribution
             scale_rf = median_rf  # Since median = exp(mean_log)
             shape_rf = np.sqrt(np.log(1 + variance_rf / (median_rf ** 2)))  # Correct shape (std dev in log space)
@@ -178,7 +179,7 @@ def index():
             plt.plot(x, pdf, 'g--', lw=2, label='lognorm_RF')
             plt.text(
                 0.9, 0.75,
-                f'$\mu$ (RF): {scale_rf[0]:.3f}\n$\sigma$ (RF): {shape_rf[0]:.3f}\n'
+                f'$\mu$ (RF): {miu[0]:.3f}\n$\sigma$ (RF): {shape_rf[0]:.3f}\n'
                 f'Median (RF): {rf_predictions[0, 0]:.3f} m\nVariance (RF): {rf_predictions[0, 1]:.3f} m²',
                 transform=plt.gca().transAxes,
                 fontsize=FS,
