@@ -78,7 +78,7 @@ def index():
             diameter is None or diameter < 0.00001 or diameter > 0.02):
             suspension_message = "parameters outside the range! No output plot."
             # Create a simple plot to indicate parameter error
-            plt.figure(figsize=(6, 5))
+            plt.figure(figsize=(8, 6))
             plt.text(0.5, 0.5, suspension_message, fontsize=FS, ha='center', va='center')
             plt.axis('off')
             plot_filename = 'parameter_error_plot.png'
@@ -133,7 +133,7 @@ def index():
             # Calculate PDF
             pdf = lognorm.pdf(x, s=shape_rf[0], scale=scale_rf[0])
 
-            plt.figure(figsize=(6, 5))
+            plt.figure(figsize=(8, 6))
             plt.plot(x, pdf, 'g--', lw=2, label='lognorm_RF')
             plt.text(
                 0.9, 0.75,
